@@ -27,9 +27,11 @@ software and experimental methods.
    against one policy trained across all four training personas.
 8. **Contextual LinUCB:** one ridge-regression model per preset uses a
    documented 29-dimensional context and Sherman–Morrison inverse updates.
+9. **Reproducible evaluation:** validated YAML, multiple training seeds,
+   paired evaluation seeds, bootstrap intervals, held-out regret, and plots.
 
-Generalized reproducible evaluation, serving, and the React demo intentionally
-arrive in later commits.
+Policy artifacts, serving, and the React demo intentionally arrive in later
+commits.
 
 ## Setup
 
@@ -66,23 +68,23 @@ docs/
 artifacts/
 ```
 
-## Contextual LinUCB walkthrough
+## Reproducible evaluation walkthrough
 
-LinUCB combines seven behavioral values with the previous action's 22-value
-encoding. Each preset owns a ridge-regression model and receives an uncertainty
-bonus. The optimized Sherman–Morrison inverse update is tested against direct
-matrix inversion rather than trusted by inspection.
+Experiment YAML rejects unknown fields and resolves into a hashed configuration.
+Each algorithm trains under multiple seeds. Evaluation clones and freezes the
+policy, uses the same seeds for policy and oracle, reports per-persona regret,
+and bootstraps a 95% interval. The resolved config is stored beside every run.
 
 Run the comparison with:
 
 ```bash
-uv run python -m adaptread.experiments.contextual_comparison
+uv run adaptread-experiment configs/portfolio.yaml --output results/portfolio
 ```
 
 After this milestone, you should be able to answer:
 
-1. Which seven behavioral values combine with the 22-value action encoding?
-2. Why does each preset maintain a separate regression model?
-3. What property does the direct-inversion test establish?
+1. Why are policy and oracle evaluated with paired seeds?
+2. What uncertainty does the bootstrap interval represent?
+3. Why must evaluation freeze exploration, updates, and counters?
 
 MIT licensed.

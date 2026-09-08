@@ -1,0 +1,16 @@
+name: mixed-ucb1
+environment:
+  episode_length: 30
+  persona_ids: [typical, phonological, low_vision, audio_support]
+agent:
+  type: ucb1
+  exploration: 2.0
+  ridge: 1.0
+training:
+  episodes: 80
+  seeds: [11, 29, 47]
+  mixed_personas: true
+evaluation:
+  seeds: [101, 103, 107, 109, 113]
+  bootstrap_samples: 2000
+  confidence: 0.95

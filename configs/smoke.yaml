@@ -1,0 +1,16 @@
+name: smoke
+environment:
+  episode_length: 5
+  persona_ids: [typical, phonological, low_vision, audio_support]
+agent:
+  type: linucb
+  exploration: 0.7
+  ridge: 1.0
+training:
+  episodes: 4
+  seeds: [11]
+  mixed_personas: true
+evaluation:
+  seeds: [101, 103]
+  bootstrap_samples: 100
+  confidence: 0.95
