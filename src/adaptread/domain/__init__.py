@@ -6,6 +6,7 @@ from adaptread.domain.actions import (
     PresentationAction,
     UserConstraints,
 )
+from adaptread.domain.reward import RewardBreakdown, RewardConfig, compute_reward
 
 __all__ = [
     "ACTION_FEATURE_DIM",
@@ -13,5 +14,8 @@ __all__ = [
     "PRESET_NAMES",
     "PRESETS",
     "PresentationAction",
+    "RewardBreakdown",
+    "RewardConfig",
     "UserConstraints",
+    "compute_reward",
 ]

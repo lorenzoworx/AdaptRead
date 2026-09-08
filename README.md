@@ -15,8 +15,10 @@ software and experimental methods.
    dependencies, Ruff, strict mypy, pytest, MIT licensing, and GitHub Actions.
 2. **Presentation domain:** immutable six-field actions, six coherent presets,
    a 22-value action encoding, and hard user constraints.
+3. **Bounded reward:** separately testable comprehension, normalized speed,
+   strain, and switch-cost terms, each clipped before weighting.
 
-Rewards, simulation, learning, evaluation, serving, and the React demo
+Simulation, learning, evaluation, serving, and the React demo
 intentionally arrive in later commits.
 
 ## Setup
@@ -54,19 +56,17 @@ docs/
 artifacts/
 ```
 
-## Milestone 2 walkthrough and teach-back
+## Bounded reward walkthrough and teach-back
 
-The full six-dimension Cartesian product contains 2,160 actions. AdaptRead uses
-six named presets so exploration stays understandable. `UserConstraints`
-filters actions before optimization, so a disallowed setting can never be
-selected merely because its expected reward is high. The preset transition
-graph is tested to ensure every action remains reachable under the two-change
-limit.
+The reward is `comprehension + 0.5·speed − 0.35·strain − 0.15·switch_cost`.
+Every component is clipped into `[0, 1]` before its weight is applied. That
+keeps an outlier WPM or malformed rate from dominating learning and preserves
+the explicit theoretical range `[-0.5, 1.5]`.
 
 After this milestone, you should be able to answer:
 
-1. Why are six curated presets preferable to exploring 2,160 combinations here?
-2. Why are minimum font size and TTS permission masks instead of reward penalties?
-3. What does Hamming distance measure between two presentations?
+1. Why must clipping happen before weighting?
+2. Which two reward terms are benefits and which two are costs?
+3. How do the weights imply the `[-0.5, 1.5]` bound?
 
 MIT licensed.
