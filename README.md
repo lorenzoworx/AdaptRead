@@ -17,8 +17,10 @@ software and experimental methods.
    a 22-value action encoding, and hard user constraints.
 3. **Bounded reward:** separately testable comprehension, normalized speed,
    strain, and switch-cost terms, each clipped before weighting.
+4. **Reader simulator:** seeded observable behavior, latent fatigue, episode
+   termination, four training personas, and two held-out personas.
 
-Simulation, learning, evaluation, serving, and the React demo
+Learning, evaluation, serving, and the React demo
 intentionally arrive in later commits.
 
 ## Setup
@@ -56,17 +58,18 @@ docs/
 artifacts/
 ```
 
-## Bounded reward walkthrough and teach-back
+## Reader simulator walkthrough and teach-back
 
-The reward is `comprehension + 0.5·speed − 0.35·strain − 0.15·switch_cost`.
-Every component is clipped into `[0, 1]` before its weight is applied. That
-keeps an outlier WPM or malformed rate from dominating learning and preserves
-the explicit theoretical range `[-0.5, 1.5]`.
+`ReaderEnvironment` produces WPM, regressions, pauses, a comprehension probe,
+segment difficulty, and normalized segment length. Fatigue affects behavior
+but stays out of the agent's observation, making the simulator partially
+observable. A reset seed controls all stochastic behavior. Personas are
+parameter vectors for software experiments, never claims about populations.
 
 After this milestone, you should be able to answer:
 
-1. Why must clipping happen before weighting?
-2. Which two reward terms are benefits and which two are costs?
-3. How do the weights imply the `[-0.5, 1.5]` bound?
+1. Which simulator value is deliberately hidden from the agent?
+2. What exactly does using the same reset seed guarantee?
+3. Why are two personas kept out of training?
 
 MIT licensed.
