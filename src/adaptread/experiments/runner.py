@@ -12,6 +12,7 @@ import numpy as np
 
 from adaptread.agents.linucb import LinUCB
 from adaptread.agents.ucb1 import UCB1
+from adaptread.api.policies import PolicyArtifact, save_policy
 from adaptread.domain.actions import PRESETS
 from adaptread.experiments.config import ExperimentConfig, load_config
 from adaptread.experiments.evaluation import evaluate_agent, run_episode
@@ -36,6 +37,7 @@ def run(config: ExperimentConfig, output_dir: Path) -> dict[str, Any]:
     selected = tuple(PERSONA_BY_ID[persona_id] for persona_id in config.environment.persona_ids)
     training_personas = selected or TRAINING_PERSONAS
     all_runs: list[dict[str, Any]] = []
+    policies: list[UCB1 | LinUCB] = []
     for seed in config.training.seeds:
         agent = build_agent(config, seed)
         rng = np.random.default_rng(seed)
@@ -47,6 +49,7 @@ def run(config: ExperimentConfig, output_dir: Path) -> dict[str, Any]:
                 persona, episode_length=config.environment.episode_length
             )
             run_episode(agent, environment, seed * 100_000 + episode, learn=True)
+        policies.append(agent)
         persona_results: dict[str, Any] = {}
         for persona in (*training_personas, *HELD_OUT_PERSONAS):
             environment = ReaderEnvironment(
@@ -68,6 +71,13 @@ def run(config: ExperimentConfig, output_dir: Path) -> dict[str, Any]:
     }
     result_path = output_dir / f"{config.name}-{config.stable_hash()}.json"
     result_path.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    artifact = PolicyArtifact.create(
+        agent=policies[0],
+        config_hash=config.stable_hash(),
+        seeds=config.training.seeds,
+        evaluation_summary=all_runs[0]["personas"],
+    )
+    save_policy(artifact, output_dir / "policy.json")
     _plot_results(result, output_dir / "regret.png")
     return result
 

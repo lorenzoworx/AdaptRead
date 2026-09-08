@@ -7,6 +7,7 @@ reading behavior. It is a contextual-bandit engineering testbed trained only on
 seeded simulated readers. Hard constraints filter actions; a bounded reward
 scores outcomes; random, default, and fixed-oracle baselines ground the result;
 UCB1 exposes the mixed-reader compromise; and LinUCB can condition on context.
+The trained policy is shipped as validated, versioned JSON rather than pickle.
 
 ## Equations
 
@@ -23,6 +24,7 @@ LinUCB(a) = θₐᵀx + α sqrt(xᵀ Aₐ⁻¹ x)
 - Six presets omit real interface nuance.
 - LinUCB assumes linear expected reward for each action.
 - Specialized and held-out profiles retain meaningful regret.
+- Schema migration is explicit; unsupported artifacts fail closed.
 
 ## Questions to expect
 

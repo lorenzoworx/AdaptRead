@@ -27,3 +27,9 @@ Policy and oracle share evaluation seeds. Learning and exploration are disabled
 without changing counters. Multiple training seeds, bootstrap intervals,
 per-persona regret, and held-out regret remain visible even when results are
 negative or mixed.
+
+## JSON policy artifacts
+
+JSON is inspectable, portable, and schema-versioned. Unlike pickle, loading it
+does not execute arbitrary Python. Artifacts record model parameters plus the
+configuration hash, training seeds, creation time, and evaluation summary.

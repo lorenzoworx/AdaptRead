@@ -29,9 +29,10 @@ software and experimental methods.
    documented 29-dimensional context and Sherman–Morrison inverse updates.
 9. **Reproducible evaluation:** validated YAML, multiple training seeds,
    paired evaluation seeds, bootstrap intervals, held-out regret, and plots.
+10. **Policy artifacts:** schema-versioned JSON stores model parameters,
+    configuration hash, seeds, timestamp, and evaluation summary—never pickle.
 
-Policy artifacts, serving, and the React demo intentionally arrive in later
-commits.
+Serving and the React demo intentionally arrive in later commits.
 
 ## Setup
 
@@ -68,12 +69,13 @@ docs/
 artifacts/
 ```
 
-## Reproducible evaluation walkthrough
+## Policy artifact walkthrough
 
-Experiment YAML rejects unknown fields and resolves into a hashed configuration.
-Each algorithm trains under multiple seeds. Evaluation clones and freezes the
-policy, uses the same seeds for policy and oracle, reports per-persona regret,
-and bootstraps a 95% interval. The resolved config is stored beside every run.
+The generalized runner now emits a trained policy beside its evaluation report.
+The artifact is ordinary validated JSON with an explicit schema version. It
+contains enough provenance to connect model state to configuration and results.
+Unknown algorithms, malformed shapes, unsupported versions, traversal paths,
+and non-JSON extensions fail closed.
 
 Run the comparison with:
 
@@ -83,8 +85,8 @@ uv run adaptread-experiment configs/portfolio.yaml --output results/portfolio
 
 After this milestone, you should be able to answer:
 
-1. Why are policy and oracle evaluated with paired seeds?
-2. What uncertainty does the bootstrap interval represent?
-3. Why must evaluation freeze exploration, updates, and counters?
+1. Why is JSON safer and easier to inspect than pickle?
+2. Which provenance fields connect a policy to its experiment?
+3. What should happen when a future service encounters an unknown schema?
 
 MIT licensed.

@@ -1,0 +1,1 @@
+"""AdaptRead HTTP API."""
