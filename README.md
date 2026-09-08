@@ -9,12 +9,15 @@ human-subject study, or evidence that any presentation improves outcomes for
 real readers. Synthetic personas will be explicit parameter sets used to test
 software and experimental methods.
 
-## Milestone 1: repository foundation
+## Completed milestones
 
-This first milestone establishes a clean Python 3.12 project with a `src/`
-package layout, locked dependencies, Ruff, strict mypy, pytest, an MIT license,
-and GitHub Actions. Presentation actions, rewards, simulation, learning,
-evaluation, serving, and the React demo intentionally arrive in later commits.
+1. **Repository foundation:** Python 3.12, a `src/` package layout, locked
+   dependencies, Ruff, strict mypy, pytest, MIT licensing, and GitHub Actions.
+2. **Presentation domain:** immutable six-field actions, six coherent presets,
+   a 22-value action encoding, and hard user constraints.
+
+Rewards, simulation, learning, evaluation, serving, and the React demo
+intentionally arrive in later commits.
 
 ## Setup
 
@@ -51,16 +54,19 @@ docs/
 artifacts/
 ```
 
-## Walkthrough and teach-back
+## Milestone 2 walkthrough and teach-back
 
-The `src/` layout prevents accidental imports from the working directory and
-makes the clean-install check meaningful. Python 3.12 is aligned across local
-development and CI. The lockfile makes dependency resolution reproducible.
+The full six-dimension Cartesian product contains 2,160 actions. AdaptRead uses
+six named presets so exploration stays understandable. `UserConstraints`
+filters actions before optimization, so a disallowed setting can never be
+selected merely because its expected reward is high. The preset transition
+graph is tested to ensure every action remains reachable under the two-change
+limit.
 
 After this milestone, you should be able to answer:
 
-1. Why does a `src/` layout catch packaging mistakes that a flat layout can hide?
-2. Which four checks define the initial quality gate?
-3. What claim does the simulator-only scope explicitly avoid?
+1. Why are six curated presets preferable to exploring 2,160 combinations here?
+2. Why are minimum font size and TTS permission masks instead of reward penalties?
+3. What does Hamming distance measure between two presentations?
 
 MIT licensed.
