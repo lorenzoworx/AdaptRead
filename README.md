@@ -19,8 +19,10 @@ software and experimental methods.
    strain, and switch-cost terms, each clipped before weighting.
 4. **Reader simulator:** seeded observable behavior, latent fatigue, episode
    termination, four training personas, and two held-out personas.
+5. **Baselines and episode runner:** one agent contract and one training loop
+   shared by random, fixed-default, and exhaustive fixed-preset oracle agents.
 
-Learning, evaluation, serving, and the React demo
+Learned policies, reproducible evaluation, serving, and the React demo
 intentionally arrive in later commits.
 
 ## Setup
@@ -58,18 +60,18 @@ docs/
 artifacts/
 ```
 
-## Reader simulator walkthrough and teach-back
+## Baselines and training-loop walkthrough
 
-`ReaderEnvironment` produces WPM, regressions, pauses, a comprehension probe,
-segment difficulty, and normalized segment length. Fatigue affects behavior
-but stays out of the agent's observation, making the simulator partially
-observable. A reset seed controls all stochastic behavior. Personas are
-parameter vectors for software experiments, never claims about populations.
+Every policy follows the same `Agent` contract, and `run_episode` owns the
+environment interaction. This prevents each algorithm from quietly receiving
+a different evaluation protocol. The result records total reward, mean
+comprehension, action counts, and switches. The exhaustive fixed oracle is not
+a deployable policy; it is the best constant preset under identical seeds.
 
 After this milestone, you should be able to answer:
 
-1. Which simulator value is deliberately hidden from the agent?
-2. What exactly does using the same reset seed guarantee?
-3. Why are two personas kept out of training?
+1. Why should every agent use the same episode runner?
+2. What does the fixed-preset oracle bound?
+3. Which recorded metric exposes a policy that changes settings too often?
 
 MIT licensed.
