@@ -23,6 +23,8 @@ software and experimental methods.
    shared by random, fixed-default, and exhaustive fixed-preset oracle agents.
 6. **UCB1:** a context-free learned policy with action masks, frozen
    evaluation, deterministic tie sampling, and JSON-safe state.
+7. **Mixed-reader experiment:** four specialist UCB1 policies are compared
+   against one policy trained across all four training personas.
 
 Contextual learning, reproducible evaluation, serving, and the React demo
 intentionally arrive in later commits.
@@ -62,17 +64,24 @@ docs/
 artifacts/
 ```
 
-## UCB1 walkthrough and teach-back
+## Mixed-reader experiment walkthrough
 
-UCB1 scores each allowed preset as its empirical mean plus an uncertainty
-bonus. Untried allowed actions are sampled first; afterward, the bonus shrinks
-as an action accumulates observations. Evaluation uses empirical means only and
-refuses updates, so evaluation cannot improve the policy or mutate counters.
+One context-free policy has a single value for each preset. When simulated
+personas prefer incompatible settings, mixed training therefore learns a
+compromise rather than personalization. The experiment trains specialist and
+mixed policies with identical budgets, then evaluates them against fixed
+oracles using the same evaluation seeds.
+
+Run the comparison with:
+
+```bash
+uv run python -m adaptread.experiments.mixed_ucb1
+```
 
 After this milestone, you should be able to answer:
 
-1. What makes UCB1 explore an action it has sampled less often?
-2. Why must evaluation disable both exploration and updates?
-3. Why is UCB1 unable to personalize two readers with different contexts?
+1. Why can one UCB1 policy not represent two context-dependent optima?
+2. What does the specialist-versus-mixed gap demonstrate?
+3. Why must both groups receive the same training budget and evaluation seeds?
 
 MIT licensed.
