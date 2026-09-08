@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: adaptread
+    runtime: docker
+    plan: free
+    healthCheckPath: /healthz
+    autoDeployTrigger: checksPass

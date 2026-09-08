@@ -41,3 +41,25 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
+
+  production:
+    needs: [backend, frontend]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build production image
+        run: docker build --tag adaptread:smoke .
+      - name: Start production image
+        run: docker run --detach --name adaptread-smoke --publish 8000:8000 adaptread:smoke
+      - name: Wait for health check
+        run: |
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:8000/healthz; then
+              exit 0
+            fi
+            sleep 2
+          done
+          docker logs adaptread-smoke
+          exit 1
+      - name: Exercise deployed API contract
+        run: python scripts/smoke_deployment.py http://127.0.0.1:8000

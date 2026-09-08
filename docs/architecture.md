@@ -44,3 +44,19 @@ The React client fetches presets and synthetic persona parameters from
 synthetic telemetry, and submits one step at a time. FastAPI remains the source
 of truth for action safety, reward computation, policy updates, and traces.
 TypeScript API declarations are generated from the committed OpenAPI schema.
+
+## Production flow
+
+```text
+GitHub checks → multi-stage Docker build → Render health gate → public service
+                    ↓                         ↓
+             static React assets       GET /healthz
+                    +
+             Python API + policy
+```
+
+Node exists only in the frontend build stage. The runtime image contains the
+installed Python package, compiled static assets, and the versioned policy
+artifact. Uvicorn serves the API and FastAPI mounts the static client at `/`, so
+one container and one origin cover the complete demonstration. The deployment
+smoke script checks both health and session creation through the public contract.

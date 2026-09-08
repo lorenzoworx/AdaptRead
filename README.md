@@ -35,9 +35,9 @@ software and experimental methods.
     session and exposes steps, traces, health, simulator data, and metrics.
 12. **React demonstration:** a Vite/TypeScript client shows the readable pane,
     persona and constraints, telemetry, rewards, exploration, and explanations.
-
-Production container and hosting files intentionally arrive in the final
-milestone.
+13. **Production packaging:** a multi-stage Docker image serves the built React
+    app and API together, with container and platform health checks, a Render
+    Blueprint, and a deployment smoke test.
 
 ## Setup
 
@@ -113,5 +113,39 @@ After this milestone, you should be able to answer:
 1. Which UI elements expose exploration rather than hiding it?
 2. Why does the browser fetch presets and persona parameters from the API?
 3. Where does the interface state that the behavior is simulated?
+
+## Production deployment
+
+Build and exercise the production image locally when Docker is available:
+
+```bash
+docker build --tag adaptread .
+docker run --rm --publish 8000:8000 adaptread
+python scripts/smoke_deployment.py http://127.0.0.1:8000
+```
+
+The multi-stage image compiles the frontend with Node, installs only the Python
+runtime package in the final image, copies the versioned policy artifact, and
+serves both surfaces through Uvicorn. The container health check and Render's
+`healthCheckPath` both use `GET /healthz`.
+
+To host the demo, create a Render Blueprint from this repository and approve
+the GitHub connection. [`render.yaml`](render.yaml) provisions one free Docker
+web service and deploys only after repository checks pass. Free Render services
+can spin down while idle and use an ephemeral filesystem, which is compatible
+with AdaptRead's intentionally in-memory synthetic sessions but unsuitable for
+durable real-user state.
+
+After deployment, verify the public URL:
+
+```bash
+python scripts/smoke_deployment.py https://YOUR-SERVICE.onrender.com
+```
+
+Production teach-back:
+
+1. Why is the frontend built in a separate Docker stage?
+2. What makes session loss after a restart an explicit design choice here?
+3. Why does the Blueprint wait for checks before deploying a commit?
 
 MIT licensed.

@@ -47,3 +47,16 @@ The React app does not carry a handwritten copy of presets or persona
 parameters. It fetches them from the API, preventing the visualization from
 silently diverging from the experiment. The UI repeatedly identifies all
 behavior as simulated.
+
+## One stateless production service
+
+The production image serves the compiled client and API from one process and
+one origin. This keeps the portfolio deployment small and avoids cross-origin
+configuration. Render's free tier may spin the service down while idle and its
+filesystem is ephemeral. That is acceptable because live sessions are bounded,
+synthetic, and explicitly disposable; a real product would move session state
+to durable storage and define privacy, deletion, and migration policies.
+
+Deployments wait for repository checks rather than triggering immediately on
+every commit. The same image-level health endpoint is also configured as the
+platform health gate.

@@ -10,7 +10,9 @@ UCB1 exposes the mixed-reader compromise; and LinUCB can condition on context.
 The trained policy is shipped as validated, versioned JSON rather than pickle.
 The service clones it per session so online updates cannot leak across readers.
 The React demo makes exploration, reward history, constraints, and action
-explanations visible instead of presenting personalization as a black box.
+explanations visible instead of presenting personalization as a black box. A
+multi-stage image deploys the client, API, and policy together; CI smoke-tests
+that production boundary before Render deploys it.
 
 ## Equations
 
@@ -30,6 +32,8 @@ LinUCB(a) = θₐᵀx + α sqrt(xᵀ Aₐ⁻¹ x)
 - Schema migration is explicit; unsupported artifacts fail closed.
 - Serving estimates strain from observable regressions and pauses.
 - Session learning is bounded, in-memory, and intentionally ephemeral.
+- A free hosted instance can cold-start after idle time and has no durable
+  session store.
 
 ## Questions to expect
 
@@ -41,3 +45,11 @@ model is easier to falsify and explain.
 
 **What would real validation require?** Participatory design, accessibility
 expertise, consented data, appropriate ethical review, and real-reader studies.
+
+**Why one container?** It makes the portfolio artifact reproducible and keeps
+the client and API on one origin. The tradeoff is that scaling and persistence
+would need a different production architecture.
+
+**What happens on restart?** Synthetic sessions disappear by design. The
+versioned base policy reloads from the image, and the health endpoint becomes
+ready only when the application can serve requests.
