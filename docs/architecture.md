@@ -37,4 +37,10 @@ owns one cloned agent and one lock per session. Steps for the same session
 serialize; separate sessions learn independently. Traces and counters expose
 behavior without persisting synthetic online state.
 
-The client flow is deferred until its milestone.
+## Client flow
+
+The React client fetches presets and synthetic persona parameters from
+`GET /v1/simulator`, starts a constrained session, generates illustrative
+synthetic telemetry, and submits one step at a time. FastAPI remains the source
+of truth for action safety, reward computation, policy updates, and traces.
+TypeScript API declarations are generated from the committed OpenAPI schema.

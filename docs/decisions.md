@@ -40,3 +40,10 @@ Each session clones the persisted policy and updates only its copy. The store
 is bounded and in-memory, making restarts intentionally discard synthetic live
 learning. Serving-time strain is estimated from regressions and pauses; that
 proxy is acknowledged train/serve skew rather than presented as latent fatigue.
+
+## API-owned demo parameters
+
+The React app does not carry a handwritten copy of presets or persona
+parameters. It fetches them from the API, preventing the visualization from
+silently diverging from the experiment. The UI repeatedly identifies all
+behavior as simulated.

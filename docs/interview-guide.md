@@ -9,6 +9,8 @@ scores outcomes; random, default, and fixed-oracle baselines ground the result;
 UCB1 exposes the mixed-reader compromise; and LinUCB can condition on context.
 The trained policy is shipped as validated, versioned JSON rather than pickle.
 The service clones it per session so online updates cannot leak across readers.
+The React demo makes exploration, reward history, constraints, and action
+explanations visible instead of presenting personalization as a black box.
 
 ## Equations
 

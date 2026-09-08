@@ -33,8 +33,11 @@ software and experimental methods.
     configuration hash, seeds, timestamp, and evaluation summary—never pickle.
 11. **Policy service:** FastAPI clones the trained policy per bounded, locked
     session and exposes steps, traces, health, simulator data, and metrics.
+12. **React demonstration:** a Vite/TypeScript client shows the readable pane,
+    persona and constraints, telemetry, rewards, exploration, and explanations.
 
-The React demo intentionally arrives in a later commit.
+Production container and hosting files intentionally arrive in the final
+milestone.
 
 ## Setup
 
@@ -71,21 +74,33 @@ docs/
 artifacts/
 ```
 
-## Policy service walkthrough
+## Run the demonstration
 
-The persisted policy is a prototype, never a global online learner. Creating a
-session reconstructs a private agent from JSON. A per-session lock serializes
-concurrent steps, while a bounded least-recently-used store prevents unbounded
-memory growth. Reward, decisions, exploration state, and telemetry are traced;
-update failures and evictions are counted.
+Start the API:
 
 ```bash
 uv run adaptread-api
 ```
 
-HTTP endpoints: `POST /v1/sessions`, `POST /v1/sessions/{id}/step`,
-`GET /v1/sessions/{id}/trace`, `GET /v1/policies`, `GET /v1/simulator`,
-`GET /healthz`, and `GET /metrics`.
+In a second terminal:
+
+```bash
+cd frontend
+npm ci
+npm run dev
+```
+
+Open `http://localhost:5173`. The API is the single source of truth for presets
+and synthetic persona parameters. The UI labels the simulation boundary near
+the title and inside the reading passage.
+
+## React demonstration walkthrough
+
+The client turns the policy loop into an inspectable interface: current
+presentation, hard constraints, reward history, estimated value, exploration
+status, and a plain-language reason for each action. Its API types are generated
+from FastAPI's OpenAPI schema. Component and Playwright tests exercise the
+simulator-only labeling and a complete session step.
 
 Run the comparison with:
 
@@ -95,8 +110,8 @@ uv run adaptread-experiment configs/portfolio.yaml --output results/portfolio
 
 After this milestone, you should be able to answer:
 
-1. What prevents one live session from changing another session's policy?
-2. Why is a per-session lock necessary?
-3. What is intentionally lost when this stateless process restarts?
+1. Which UI elements expose exploration rather than hiding it?
+2. Why does the browser fetch presets and persona parameters from the API?
+3. Where does the interface state that the behavior is simulated?
 
 MIT licensed.
