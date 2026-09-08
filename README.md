@@ -21,8 +21,10 @@ software and experimental methods.
    termination, four training personas, and two held-out personas.
 5. **Baselines and episode runner:** one agent contract and one training loop
    shared by random, fixed-default, and exhaustive fixed-preset oracle agents.
+6. **UCB1:** a context-free learned policy with action masks, frozen
+   evaluation, deterministic tie sampling, and JSON-safe state.
 
-Learned policies, reproducible evaluation, serving, and the React demo
+Contextual learning, reproducible evaluation, serving, and the React demo
 intentionally arrive in later commits.
 
 ## Setup
@@ -60,18 +62,17 @@ docs/
 artifacts/
 ```
 
-## Baselines and training-loop walkthrough
+## UCB1 walkthrough and teach-back
 
-Every policy follows the same `Agent` contract, and `run_episode` owns the
-environment interaction. This prevents each algorithm from quietly receiving
-a different evaluation protocol. The result records total reward, mean
-comprehension, action counts, and switches. The exhaustive fixed oracle is not
-a deployable policy; it is the best constant preset under identical seeds.
+UCB1 scores each allowed preset as its empirical mean plus an uncertainty
+bonus. Untried allowed actions are sampled first; afterward, the bonus shrinks
+as an action accumulates observations. Evaluation uses empirical means only and
+refuses updates, so evaluation cannot improve the policy or mutate counters.
 
 After this milestone, you should be able to answer:
 
-1. Why should every agent use the same episode runner?
-2. What does the fixed-preset oracle bound?
-3. Which recorded metric exposes a policy that changes settings too often?
+1. What makes UCB1 explore an action it has sampled less often?
+2. Why must evaluation disable both exploration and updates?
+3. Why is UCB1 unable to personalize two readers with different contexts?
 
 MIT licensed.
