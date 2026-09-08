@@ -31,8 +31,10 @@ software and experimental methods.
    paired evaluation seeds, bootstrap intervals, held-out regret, and plots.
 10. **Policy artifacts:** schema-versioned JSON stores model parameters,
     configuration hash, seeds, timestamp, and evaluation summary—never pickle.
+11. **Policy service:** FastAPI clones the trained policy per bounded, locked
+    session and exposes steps, traces, health, simulator data, and metrics.
 
-Serving and the React demo intentionally arrive in later commits.
+The React demo intentionally arrives in a later commit.
 
 ## Setup
 
@@ -69,13 +71,21 @@ docs/
 artifacts/
 ```
 
-## Policy artifact walkthrough
+## Policy service walkthrough
 
-The generalized runner now emits a trained policy beside its evaluation report.
-The artifact is ordinary validated JSON with an explicit schema version. It
-contains enough provenance to connect model state to configuration and results.
-Unknown algorithms, malformed shapes, unsupported versions, traversal paths,
-and non-JSON extensions fail closed.
+The persisted policy is a prototype, never a global online learner. Creating a
+session reconstructs a private agent from JSON. A per-session lock serializes
+concurrent steps, while a bounded least-recently-used store prevents unbounded
+memory growth. Reward, decisions, exploration state, and telemetry are traced;
+update failures and evictions are counted.
+
+```bash
+uv run adaptread-api
+```
+
+HTTP endpoints: `POST /v1/sessions`, `POST /v1/sessions/{id}/step`,
+`GET /v1/sessions/{id}/trace`, `GET /v1/policies`, `GET /v1/simulator`,
+`GET /healthz`, and `GET /metrics`.
 
 Run the comparison with:
 
@@ -85,8 +95,8 @@ uv run adaptread-experiment configs/portfolio.yaml --output results/portfolio
 
 After this milestone, you should be able to answer:
 
-1. Why is JSON safer and easier to inspect than pickle?
-2. Which provenance fields connect a policy to its experiment?
-3. What should happen when a future service encounters an unknown schema?
+1. What prevents one live session from changing another session's policy?
+2. Why is a per-session lock necessary?
+3. What is intentionally lost when this stateless process restarts?
 
 MIT licensed.

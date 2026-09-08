@@ -8,6 +8,7 @@ seeded simulated readers. Hard constraints filter actions; a bounded reward
 scores outcomes; random, default, and fixed-oracle baselines ground the result;
 UCB1 exposes the mixed-reader compromise; and LinUCB can condition on context.
 The trained policy is shipped as validated, versioned JSON rather than pickle.
+The service clones it per session so online updates cannot leak across readers.
 
 ## Equations
 
@@ -25,6 +26,8 @@ LinUCB(a) = θₐᵀx + α sqrt(xᵀ Aₐ⁻¹ x)
 - LinUCB assumes linear expected reward for each action.
 - Specialized and held-out profiles retain meaningful regret.
 - Schema migration is explicit; unsupported artifacts fail closed.
+- Serving estimates strain from observable regressions and pauses.
+- Session learning is bounded, in-memory, and intentionally ephemeral.
 
 ## Questions to expect
 

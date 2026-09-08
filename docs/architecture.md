@@ -22,5 +22,19 @@ segment difficulty, and normalized segment length. LinUCB prepends a bias and
 appends the previous presentation's 22-value encoding for 29 total values.
 
 The policy artifact stores an explicit schema version, agent type, parameters,
-configuration hash, seeds, timestamp, and evaluation summary. Serving and
-client flows are intentionally deferred until their milestones.
+configuration hash, seeds, timestamp, and evaluation summary.
+
+## Online flow
+
+```text
+versioned policy → clone per session → hard constraint mask → next action
+                         ↑                                      ↓
+                    local update ← bounded reward ← client telemetry
+```
+
+The base policy remains immutable. A bounded least-recently-used session store
+owns one cloned agent and one lock per session. Steps for the same session
+serialize; separate sessions learn independently. Traces and counters expose
+behavior without persisting synthetic online state.
+
+The client flow is deferred until its milestone.
