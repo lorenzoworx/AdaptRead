@@ -25,9 +25,11 @@ software and experimental methods.
    evaluation, deterministic tie sampling, and JSON-safe state.
 7. **Mixed-reader experiment:** four specialist UCB1 policies are compared
    against one policy trained across all four training personas.
+8. **Contextual LinUCB:** one ridge-regression model per preset uses a
+   documented 29-dimensional context and Sherman–Morrison inverse updates.
 
-Contextual learning, reproducible evaluation, serving, and the React demo
-intentionally arrive in later commits.
+Generalized reproducible evaluation, serving, and the React demo intentionally
+arrive in later commits.
 
 ## Setup
 
@@ -64,24 +66,23 @@ docs/
 artifacts/
 ```
 
-## Mixed-reader experiment walkthrough
+## Contextual LinUCB walkthrough
 
-One context-free policy has a single value for each preset. When simulated
-personas prefer incompatible settings, mixed training therefore learns a
-compromise rather than personalization. The experiment trains specialist and
-mixed policies with identical budgets, then evaluates them against fixed
-oracles using the same evaluation seeds.
+LinUCB combines seven behavioral values with the previous action's 22-value
+encoding. Each preset owns a ridge-regression model and receives an uncertainty
+bonus. The optimized Sherman–Morrison inverse update is tested against direct
+matrix inversion rather than trusted by inspection.
 
 Run the comparison with:
 
 ```bash
-uv run python -m adaptread.experiments.mixed_ucb1
+uv run python -m adaptread.experiments.contextual_comparison
 ```
 
 After this milestone, you should be able to answer:
 
-1. Why can one UCB1 policy not represent two context-dependent optima?
-2. What does the specialist-versus-mixed gap demonstrate?
-3. Why must both groups receive the same training budget and evaluation seeds?
+1. Which seven behavioral values combine with the 22-value action encoding?
+2. Why does each preset maintain a separate regression model?
+3. What property does the direct-inversion test establish?
 
 MIT licensed.

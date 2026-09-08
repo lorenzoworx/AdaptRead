@@ -1,0 +1,1539 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-08T03:48:36.752424+00:00",
+  "scope": "simulated readers only",
+  "context": {
+    "behavioral_features": 7,
+    "previous_action_encoding": 22,
+    "total_dimensions": 29
+  },
+  "config": {
+    "episodes": 80,
+    "episode_length": 30,
+    "training_seeds": [
+      11,
+      29,
+      47
+    ],
+    "evaluation_seeds": [
+      101,
+      103,
+      107,
+      109,
+      113
+    ],
+    "exploration": 2.0,
+    "bootstrap_samples": 2000
+  },
+  "runs": [
+    {
+      "training_seed": 11,
+      "personas": {
+        "typical": {
+          "mean_reward": 40.233881476441546,
+          "reward_ci_95": [
+            39.044794085488974,
+            41.43842293362441
+          ],
+          "mean_regret": 1.0222169686012463,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 0,
+          "episodes": [
+            {
+              "total_reward": 40.61877348803885,
+              "mean_comprehension": 0.9,
+              "action_counts": [
+                3,
+                0,
+                0,
+                27,
+                0,
+                0
+              ],
+              "switches": 6
+            },
+            {
+              "total_reward": 42.63918341380488,
+              "mean_comprehension": 0.9666666666666667,
+              "action_counts": [
+                4,
+                0,
+                0,
+                26,
+                0,
+                0
+              ],
+              "switches": 8
+            },
+            {
+              "total_reward": 38.6567290084123,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                2,
+                0,
+                0,
+                28,
+                0,
+                0
+              ],
+              "switches": 4
+            },
+            {
+              "total_reward": 40.59893053328315,
+              "mean_comprehension": 0.9,
+              "action_counts": [
+                2,
+                0,
+                0,
+                28,
+                0,
+                0
+              ],
+              "switches": 4
+            },
+            {
+              "total_reward": 38.65579093866855,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                2,
+                0,
+                0,
+                28,
+                0,
+                0
+              ],
+              "switches": 4
+            }
+          ]
+        },
+        "phonological": {
+          "mean_reward": 26.949132791162334,
+          "reward_ci_95": [
+            25.663640314522986,
+            28.22827768997966
+          ],
+          "mean_regret": 7.9797016025092775,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 4,
+          "episodes": [
+            {
+              "total_reward": 24.746826741569958,
+              "mean_comprehension": 0.6666666666666666,
+              "action_counts": [
+                3,
+                14,
+                0,
+                3,
+                4,
+                6
+              ],
+              "switches": 28
+            },
+            {
+              "total_reward": 27.235305760236116,
+              "mean_comprehension": 0.7333333333333333,
+              "action_counts": [
+                2,
+                14,
+                0,
+                2,
+                5,
+                7
+              ],
+              "switches": 28
+            },
+            {
+              "total_reward": 28.26723123873057,
+              "mean_comprehension": 0.7666666666666667,
+              "action_counts": [
+                2,
+                14,
+                0,
+                3,
+                7,
+                4
+              ],
+              "switches": 27
+            },
+            {
+              "total_reward": 25.81049010917448,
+              "mean_comprehension": 0.7,
+              "action_counts": [
+                1,
+                15,
+                0,
+                1,
+                4,
+                9
+              ],
+              "switches": 29
+            },
+            {
+              "total_reward": 28.685810106100522,
+              "mean_comprehension": 0.7666666666666667,
+              "action_counts": [
+                4,
+                15,
+                0,
+                0,
+                7,
+                4
+              ],
+              "switches": 29
+            }
+          ]
+        },
+        "low_vision": {
+          "mean_reward": 24.475512387064363,
+          "reward_ci_95": [
+            21.22745344735756,
+            27.020547820179207
+          ],
+          "mean_regret": 9.427292650257181,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 5,
+          "episodes": [
+            {
+              "total_reward": 25.86920017891383,
+              "mean_comprehension": 0.7,
+              "action_counts": [
+                3,
+                7,
+                0,
+                11,
+                1,
+                8
+              ],
+              "switches": 20
+            },
+            {
+              "total_reward": 28.542247505927755,
+              "mean_comprehension": 0.8,
+              "action_counts": [
+                0,
+                10,
+                0,
+                10,
+                4,
+                6
+              ],
+              "switches": 20
+            },
+            {
+              "total_reward": 24.67828252734125,
+              "mean_comprehension": 0.6666666666666666,
+              "action_counts": [
+                0,
+                3,
+                0,
+                24,
+                0,
+                3
+              ],
+              "switches": 6
+            },
+            {
+              "total_reward": 18.49011766736749,
+              "mean_comprehension": 0.4666666666666667,
+              "action_counts": [
+                0,
+                0,
+                0,
+                30,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 24.79771405577151,
+              "mean_comprehension": 0.6666666666666666,
+              "action_counts": [
+                1,
+                6,
+                0,
+                17,
+                3,
+                3
+              ],
+              "switches": 13
+            }
+          ]
+        },
+        "audio_support": {
+          "mean_reward": 38.064912677271764,
+          "reward_ci_95": [
+            36.68299881120286,
+            39.446826543340684
+          ],
+          "mean_regret": 0.0,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 3,
+          "episodes": [
+            {
+              "total_reward": 39.278999184613156,
+              "mean_comprehension": 0.9333333333333333,
+              "action_counts": [
+                0,
+                0,
+                0,
+                30,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 40.25549225536089,
+              "mean_comprehension": 0.9666666666666667,
+              "action_counts": [
+                0,
+                0,
+                0,
+                30,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 36.27025959918367,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                0,
+                0,
+                0,
+                30,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 38.16514983675532,
+              "mean_comprehension": 0.9,
+              "action_counts": [
+                0,
+                0,
+                0,
+                30,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 36.354662510445806,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                0,
+                0,
+                0,
+                30,
+                0,
+                0
+              ],
+              "switches": 0
+            }
+          ]
+        },
+        "focus_held_out": {
+          "mean_reward": 34.33155871991616,
+          "reward_ci_95": [
+            33.71793819741272,
+            35.21007249090128
+          ],
+          "mean_regret": 5.649840228519227,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 2,
+          "episodes": [
+            {
+              "total_reward": 33.70773367049565,
+              "mean_comprehension": 0.7666666666666667,
+              "action_counts": [
+                2,
+                0,
+                0,
+                28,
+                0,
+                0
+              ],
+              "switches": 4
+            },
+            {
+              "total_reward": 33.76238452578471,
+              "mean_comprehension": 0.7666666666666667,
+              "action_counts": [
+                1,
+                0,
+                0,
+                29,
+                0,
+                0
+              ],
+              "switches": 2
+            },
+            {
+              "total_reward": 33.70591956014378,
+              "mean_comprehension": 0.7666666666666667,
+              "action_counts": [
+                0,
+                0,
+                0,
+                30,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 34.55041231755362,
+              "mean_comprehension": 0.8,
+              "action_counts": [
+                0,
+                0,
+                0,
+                30,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 35.93134352560301,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                0,
+                0,
+                0,
+                30,
+                0,
+                0
+              ],
+              "switches": 0
+            }
+          ]
+        },
+        "large_text_held_out": {
+          "mean_reward": 30.949297249653057,
+          "reward_ci_95": [
+            30.51912987282313,
+            31.379464626482992
+          ],
+          "mean_regret": 6.431595856718664,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 1,
+          "episodes": [
+            {
+              "total_reward": 30.35494908193078,
+              "mean_comprehension": 0.7333333333333333,
+              "action_counts": [
+                0,
+                0,
+                0,
+                30,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 30.359819666793793,
+              "mean_comprehension": 0.7333333333333333,
+              "action_counts": [
+                0,
+                0,
+                0,
+                30,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 31.298601779701755,
+              "mean_comprehension": 0.7666666666666667,
+              "action_counts": [
+                0,
+                0,
+                0,
+                30,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 31.166111866666494,
+              "mean_comprehension": 0.7666666666666667,
+              "action_counts": [
+                0,
+                0,
+                0,
+                30,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 31.567003853172476,
+              "mean_comprehension": 0.7666666666666667,
+              "action_counts": [
+                1,
+                1,
+                0,
+                28,
+                0,
+                0
+              ],
+              "switches": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "training_seed": 29,
+      "personas": {
+        "typical": {
+          "mean_reward": 41.25609844504279,
+          "reward_ci_95": [
+            40.03230358855816,
+            42.47075469077029
+          ],
+          "mean_regret": 0.0,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 0,
+          "episodes": [
+            {
+              "total_reward": 42.279558732258444,
+              "mean_comprehension": 0.9333333333333333,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 43.26355034604255,
+              "mean_comprehension": 0.9666666666666667,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 40.26376216922905,
+              "mean_comprehension": 0.8666666666666667,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 41.26755529724949,
+              "mean_comprehension": 0.9,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 39.206065680434435,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            }
+          ]
+        },
+        "phonological": {
+          "mean_reward": 25.374545708002948,
+          "reward_ci_95": [
+            21.501509285715123,
+            28.62463170926852
+          ],
+          "mean_regret": 9.554288685668658,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 4,
+          "episodes": [
+            {
+              "total_reward": 27.84822926310741,
+              "mean_comprehension": 0.7333333333333333,
+              "action_counts": [
+                0,
+                11,
+                0,
+                0,
+                9,
+                10
+              ],
+              "switches": 21
+            },
+            {
+              "total_reward": 25.376260566754837,
+              "mean_comprehension": 0.6666666666666666,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 29.966222905493453,
+              "mean_comprehension": 0.8,
+              "action_counts": [
+                3,
+                14,
+                0,
+                0,
+                13,
+                0
+              ],
+              "switches": 27
+            },
+            {
+              "total_reward": 17.988650680404568,
+              "mean_comprehension": 0.43333333333333335,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 25.69336512425448,
+              "mean_comprehension": 0.6666666666666666,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            }
+          ]
+        },
+        "low_vision": {
+          "mean_reward": 30.899879677006616,
+          "reward_ci_95": [
+            29.15706050654518,
+            32.642698847468054
+          ],
+          "mean_regret": 3.0029253603149293,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 5,
+          "episodes": [
+            {
+              "total_reward": 33.52962258514696,
+              "mean_comprehension": 0.8666666666666667,
+              "action_counts": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                30
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 27.65475218442554,
+              "mean_comprehension": 0.7333333333333333,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 32.49678897834079,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                30
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 29.657563526755023,
+              "mean_comprehension": 0.7666666666666667,
+              "action_counts": [
+                11,
+                0,
+                0,
+                0,
+                0,
+                19
+              ],
+              "switches": 1
+            },
+            {
+              "total_reward": 31.160671110364774,
+              "mean_comprehension": 0.8,
+              "action_counts": [
+                6,
+                0,
+                0,
+                0,
+                0,
+                24
+              ],
+              "switches": 1
+            }
+          ]
+        },
+        "audio_support": {
+          "mean_reward": 35.50254257125507,
+          "reward_ci_95": [
+            34.69622385485545,
+            36.276472916259834
+          ],
+          "mean_regret": 2.562370106016698,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 3,
+          "episodes": [
+            {
+              "total_reward": 35.11687715466668,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 36.10820588361666,
+              "mean_comprehension": 0.8666666666666667,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 34.08534541199796,
+              "mean_comprehension": 0.8,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 36.96366840807179,
+              "mean_comprehension": 0.9,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 35.23861599792225,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            }
+          ]
+        },
+        "focus_held_out": {
+          "mean_reward": 38.00999512646261,
+          "reward_ci_95": [
+            37.26255967492504,
+            38.69370079425543
+          ],
+          "mean_regret": 1.9714038219727628,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 2,
+          "episodes": [
+            {
+              "total_reward": 38.00229955531176,
+              "mean_comprehension": 0.8666666666666667,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 39.025875563353274,
+              "mean_comprehension": 0.9,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 37.01721793080268,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 38.86655110399134,
+              "mean_comprehension": 0.9,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 37.138031478854046,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            }
+          ]
+        },
+        "large_text_held_out": {
+          "mean_reward": 34.86052420207697,
+          "reward_ci_95": [
+            34.05324483077307,
+            35.63501976084069
+          ],
+          "mean_regret": 2.520368904294763,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 1,
+          "episodes": [
+            {
+              "total_reward": 34.47703138729365,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 35.465029049382544,
+              "mean_comprehension": 0.8666666666666667,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 33.44138790572972,
+              "mean_comprehension": 0.8,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 36.325868037459486,
+              "mean_comprehension": 0.9,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 34.593304630519405,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                30,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "switches": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "training_seed": 47,
+      "personas": {
+        "typical": {
+          "mean_reward": 40.20521454833888,
+          "reward_ci_95": [
+            39.004968153374804,
+            41.45556229956056
+          ],
+          "mean_regret": 1.0508838967039111,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 0,
+          "episodes": [
+            {
+              "total_reward": 40.56873425787841,
+              "mean_comprehension": 0.9,
+              "action_counts": [
+                5,
+                0,
+                0,
+                25,
+                0,
+                0
+              ],
+              "switches": 9
+            },
+            {
+              "total_reward": 42.69579510440416,
+              "mean_comprehension": 0.9666666666666667,
+              "action_counts": [
+                4,
+                0,
+                0,
+                26,
+                0,
+                0
+              ],
+              "switches": 6
+            },
+            {
+              "total_reward": 38.641605460750284,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                10,
+                0,
+                0,
+                20,
+                0,
+                0
+              ],
+              "switches": 11
+            },
+            {
+              "total_reward": 40.49824599194964,
+              "mean_comprehension": 0.9,
+              "action_counts": [
+                6,
+                0,
+                0,
+                24,
+                0,
+                0
+              ],
+              "switches": 11
+            },
+            {
+              "total_reward": 38.62169192671191,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                3,
+                0,
+                0,
+                27,
+                0,
+                0
+              ],
+              "switches": 6
+            }
+          ]
+        },
+        "phonological": {
+          "mean_reward": 23.62113252716141,
+          "reward_ci_95": [
+            22.20269585317925,
+            25.022468806824964
+          ],
+          "mean_regret": 11.307701866510195,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 4,
+          "episodes": [
+            {
+              "total_reward": 22.820324273589446,
+              "mean_comprehension": 0.6,
+              "action_counts": [
+                1,
+                2,
+                0,
+                1,
+                0,
+                26
+              ],
+              "switches": 4
+            },
+            {
+              "total_reward": 24.216950377424332,
+              "mean_comprehension": 0.6333333333333333,
+              "action_counts": [
+                2,
+                2,
+                0,
+                2,
+                0,
+                24
+              ],
+              "switches": 5
+            },
+            {
+              "total_reward": 24.952852984315093,
+              "mean_comprehension": 0.6666666666666666,
+              "action_counts": [
+                1,
+                1,
+                0,
+                5,
+                0,
+                23
+              ],
+              "switches": 3
+            },
+            {
+              "total_reward": 20.62069115644303,
+              "mean_comprehension": 0.5333333333333333,
+              "action_counts": [
+                12,
+                8,
+                0,
+                6,
+                4,
+                0
+              ],
+              "switches": 24
+            },
+            {
+              "total_reward": 25.49484384403516,
+              "mean_comprehension": 0.6666666666666666,
+              "action_counts": [
+                1,
+                1,
+                0,
+                4,
+                0,
+                24
+              ],
+              "switches": 3
+            }
+          ]
+        },
+        "low_vision": {
+          "mean_reward": 29.052607007636755,
+          "reward_ci_95": [
+            24.729243350412553,
+            31.754967798272542
+          ],
+          "mean_regret": 4.850198029684792,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 5,
+          "episodes": [
+            {
+              "total_reward": 32.07420928140675,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                2,
+                1,
+                0,
+                1,
+                0,
+                26
+              ],
+              "switches": 3
+            },
+            {
+              "total_reward": 29.782625422690206,
+              "mean_comprehension": 0.8,
+              "action_counts": [
+                1,
+                3,
+                0,
+                9,
+                4,
+                13
+              ],
+              "switches": 7
+            },
+            {
+              "total_reward": 31.816680777117664,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                1,
+                1,
+                0,
+                5,
+                0,
+                23
+              ],
+              "switches": 3
+            },
+            {
+              "total_reward": 20.596460682655266,
+              "mean_comprehension": 0.5333333333333333,
+              "action_counts": [
+                7,
+                2,
+                0,
+                19,
+                0,
+                2
+              ],
+              "switches": 15
+            },
+            {
+              "total_reward": 30.99305887431388,
+              "mean_comprehension": 0.8,
+              "action_counts": [
+                1,
+                1,
+                0,
+                4,
+                0,
+                24
+              ],
+              "switches": 3
+            }
+          ]
+        },
+        "audio_support": {
+          "mean_reward": 37.75859774237871,
+          "reward_ci_95": [
+            36.492999849204445,
+            38.98329759789484
+          ],
+          "mean_regret": 0.3063149348930537,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 3,
+          "episodes": [
+            {
+              "total_reward": 38.200112964802486,
+              "mean_comprehension": 0.9,
+              "action_counts": [
+                1,
+                0,
+                0,
+                29,
+                0,
+                0
+              ],
+              "switches": 2
+            },
+            {
+              "total_reward": 40.16146161855006,
+              "mean_comprehension": 0.9666666666666667,
+              "action_counts": [
+                1,
+                0,
+                0,
+                29,
+                0,
+                0
+              ],
+              "switches": 2
+            },
+            {
+              "total_reward": 35.999310994717,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                4,
+                0,
+                0,
+                26,
+                0,
+                0
+              ],
+              "switches": 5
+            },
+            {
+              "total_reward": 38.16514983675532,
+              "mean_comprehension": 0.9,
+              "action_counts": [
+                0,
+                0,
+                0,
+                30,
+                0,
+                0
+              ],
+              "switches": 0
+            },
+            {
+              "total_reward": 36.26695329706871,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                1,
+                0,
+                0,
+                29,
+                0,
+                0
+              ],
+              "switches": 2
+            }
+          ]
+        },
+        "focus_held_out": {
+          "mean_reward": 33.902893079726354,
+          "reward_ci_95": [
+            31.67837742718142,
+            35.35288531585934
+          ],
+          "mean_regret": 6.078505868709029,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 2,
+          "episodes": [
+            {
+              "total_reward": 34.54660803807433,
+              "mean_comprehension": 0.8,
+              "action_counts": [
+                6,
+                2,
+                0,
+                21,
+                1,
+                0
+              ],
+              "switches": 12
+            },
+            {
+              "total_reward": 29.65670236035069,
+              "mean_comprehension": 0.6666666666666666,
+              "action_counts": [
+                1,
+                1,
+                0,
+                4,
+                0,
+                24
+              ],
+              "switches": 3
+            },
+            {
+              "total_reward": 34.87517201678069,
+              "mean_comprehension": 0.8,
+              "action_counts": [
+                11,
+                2,
+                0,
+                17,
+                0,
+                0
+              ],
+              "switches": 13
+            },
+            {
+              "total_reward": 34.54508425185563,
+              "mean_comprehension": 0.8,
+              "action_counts": [
+                6,
+                0,
+                0,
+                24,
+                0,
+                0
+              ],
+              "switches": 11
+            },
+            {
+              "total_reward": 35.89089873157043,
+              "mean_comprehension": 0.8333333333333334,
+              "action_counts": [
+                4,
+                0,
+                0,
+                26,
+                0,
+                0
+              ],
+              "switches": 8
+            }
+          ]
+        },
+        "large_text_held_out": {
+          "mean_reward": 31.352371699657205,
+          "reward_ci_95": [
+            30.785973009454313,
+            32.02513806740319
+          ],
+          "mean_regret": 6.0285214067145185,
+          "paired_seeds": [
+            101,
+            103,
+            107,
+            109,
+            113
+          ],
+          "oracle_action": 1,
+          "episodes": [
+            {
+              "total_reward": 31.284892088025526,
+              "mean_comprehension": 0.7666666666666667,
+              "action_counts": [
+                2,
+                3,
+                0,
+                6,
+                4,
+                15
+              ],
+              "switches": 9
+            },
+            {
+              "total_reward": 30.353498706216882,
+              "mean_comprehension": 0.7333333333333333,
+              "action_counts": [
+                1,
+                1,
+                0,
+                4,
+                0,
+                24
+              ],
+              "switches": 3
+            },
+            {
+              "total_reward": 32.5186353869883,
+              "mean_comprehension": 0.8,
+              "action_counts": [
+                10,
+                2,
+                0,
+                18,
+                0,
+                0
+              ],
+              "switches": 13
+            },
+            {
+              "total_reward": 31.128196895247193,
+              "mean_comprehension": 0.7666666666666667,
+              "action_counts": [
+                5,
+                1,
+                0,
+                22,
+                0,
+                2
+              ],
+              "switches": 11
+            },
+            {
+              "total_reward": 31.476635421808126,
+              "mean_comprehension": 0.7666666666666667,
+              "action_counts": [
+                3,
+                0,
+                0,
+                27,
+                0,
+                0
+              ],
+              "switches": 6
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
