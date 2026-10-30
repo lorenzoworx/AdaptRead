@@ -1,13 +1,39 @@
 # AdaptRead
 
-AdaptRead is a portfolio project exploring a narrow question: how can a
-contextual-bandit policy choose the next safe reading presentation from recent
-observable behavior?
+AdaptRead explores a narrow question: how can a contextual-bandit policy choose
+the next safe reading presentation from recent observable behavior?
+
+**[Try the live demo](https://boywithabot.com/projects/adaptread/)** ·
+[Case study](https://boywithabot.com/projects/project-details.html?id=adaptread) ·
+[Full results](results/README.md)
+
+![AdaptRead demo: experiment controls, an adaptive reading pane, and policy telemetry explaining each decision](docs/images/adaptread-demo.png)
 
 The project uses **simulated readers only**. It is not a clinical tool, a
 human-subject study, or evidence that any presentation improves outcomes for
-real readers. Synthetic personas will be explicit parameter sets used to test
+real readers. Synthetic personas are explicit parameter sets used to test
 software and experimental methods.
+
+## What it found
+
+One context-free UCB1 policy trained across four simulated reader personas
+cannot serve readers whose best presentations conflict: its mean regret stayed
+high on the specialized profiles. A contextual LinUCB policy lowered mean regret
+for all six evaluated profiles, including two held out from training:
+
+| Simulated profile | Mixed UCB1 | LinUCB |
+|---|---:|---:|
+| Typical | 1.795 | 0.691 |
+| Phonological | 17.154 | 9.614 |
+| Low vision | 7.218 | 5.760 |
+| Audio support | 3.434 | 0.956 |
+| Focus chunks (held out) | 7.072 | 4.567 |
+| Large text (held out) | 6.441 | 4.993 |
+
+This is a positive but mixed result. Regret remains substantial on the two most
+specialized training profiles and both held-out profiles, and nothing in this
+synthetic result establishes benefit for real readers. The
+[results](results/README.md) record seeds, parameters, and per-persona detail.
 
 ## Completed milestones
 
@@ -58,20 +84,20 @@ uv run --project /path/to/AdaptRead python -c \
   "import adaptread; print(adaptread.__version__)"
 ```
 
-## Intended architecture
+## Architecture
 
 ```text
 src/adaptread/
-├── domain/
-├── simulator/
-├── agents/
-├── experiments/
-└── api/
-frontend/
-tests/
-configs/
-docs/
-artifacts/
+├── domain/        presentation actions, user constraints, and the bounded reward
+├── simulator/     the simulated reader environment and personas
+├── agents/        random, fixed, and oracle baselines; UCB1; LinUCB
+├── experiments/   configuration, evaluation, and comparison runners
+└── api/           FastAPI service, policy loading, and demo sessions
+frontend/          React demonstration
+tests/             pytest suite
+configs/           experiment configurations
+docs/              design notes and images
+artifacts/         versioned policy artifacts
 ```
 
 ## Run the demonstration
@@ -129,17 +155,20 @@ runtime package in the final image, copies the versioned policy artifact, and
 serves both surfaces through Uvicorn. The container health check and Render's
 `healthCheckPath` both use `GET /healthz`.
 
-To host the demo, create a Render Blueprint from this repository and approve
+The public demo runs at
+[boywithabot.com/projects/adaptread](https://boywithabot.com/projects/adaptread/).
+To host your own copy, create a Render Blueprint from this repository and approve
 the GitHub connection. [`render.yaml`](render.yaml) provisions one free Docker
 web service and deploys only after repository checks pass. Free Render services
 can spin down while idle and use an ephemeral filesystem, which is compatible
 with AdaptRead's intentionally in-memory synthetic sessions but unsuitable for
 durable real-user state.
 
-After deployment, verify the public URL:
+After deployment, verify the public URL. This checks the live demo; replace
+the URL to check your own deployment:
 
 ```bash
-python scripts/smoke_deployment.py https://YOUR-SERVICE.onrender.com
+python scripts/smoke_deployment.py https://boywithabot.com/projects/adaptread
 ```
 
 Production teach-back:
