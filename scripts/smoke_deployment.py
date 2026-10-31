@@ -9,7 +9,14 @@ from urllib.request import Request, urlopen
 
 def fetch(url: str, *, data: dict[str, object] | None = None) -> dict[str, object]:
     body = json.dumps(data).encode() if data is not None else None
-    request = Request(url, data=body, headers={"Content-Type": "application/json"})
+    request = Request(
+        url,
+        data=body,
+        headers={
+            "Content-Type": "application/json",
+            "User-Agent": "AdaptRead-Deployment-Smoke/1.0",
+        },
+    )
     with urlopen(request, timeout=30) as response:  # noqa: S310
         return json.load(response)  # type: ignore[no-any-return]
 
