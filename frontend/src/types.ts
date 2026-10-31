@@ -25,7 +25,15 @@ export type Simulator = {
   personas: Persona[];
 };
 
+export type PresetScore = {
+  action_index: number;
+  estimate: number;
+  exploration_bonus: number | null;
+  allowed: boolean;
+};
+
 export type StepResponse = {
+  preset_scores?: PresetScore[];
   action_index: number;
   action: Action;
   reward: number;

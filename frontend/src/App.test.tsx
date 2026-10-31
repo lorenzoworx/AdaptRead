@@ -18,6 +18,6 @@ test("clearly labels the demo as simulated", async () => {
       action: { font_size: 18, font_family: "sans", line_spacing: 1.6, chunk_size: 20, tts_rate: "off", theme: "light" } }), { status: 201 });
   }));
   render(<App />);
-  expect(await screen.findByText("SIMULATED READER LAB")).toBeInTheDocument();
+  expect(await screen.findByText("Simulated reader lab")).toBeInTheDocument();
   expect(await screen.findByText(/not evidence about people/i)).toBeInTheDocument();
 });
