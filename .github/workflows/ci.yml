@@ -53,7 +53,7 @@ jobs:
         run: docker run --detach --name adaptread-smoke --publish 8000:8000 adaptread:smoke
       - name: Wait for health check
         run: |
-          for attempt in {1..30}; do
+          for _ in {1..30}; do
             if curl --fail --silent http://127.0.0.1:8000/healthz; then
               exit 0
             fi
@@ -88,3 +88,27 @@ jobs:
           labels: |
             org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
             org.opencontainers.image.revision=${{ github.sha }}
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: publish
+    runs-on: [self-hosted, macOS, ARM64, adaptread-production]
+    timeout-minutes: 30
+    concurrency:
+      group: adaptread-production
+      cancel-in-progress: false
+    environment:
+      name: production
+      url: ${{ vars.PRODUCTION_URL }}/projects/adaptread/
+    steps:
+      - name: Check out the verified commit
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Deploy and verify the exact commit
+        env:
+          DEPLOY_STACK_DIR: ${{ vars.DEPLOY_STACK_DIR }}
+          PRODUCTION_URL: ${{ vars.PRODUCTION_URL }}
+        run: |
+          chmod -R a+rX "$GITHUB_WORKSPACE"
+          lockf -t 3600 -k /tmp/boywithabot-production-deploy.lock bash scripts/deploy-production.sh
