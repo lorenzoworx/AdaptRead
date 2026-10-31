@@ -14,6 +14,10 @@ human-subject study, or evidence that any presentation improves outcomes for
 real readers. Synthetic personas are explicit parameter sets used to test
 software and experimental methods.
 
+## Inspecting the policy
+
+The presentation bench shows all six real presets, their safety mask, and the estimates and exploration bonuses used for the latest decision. Bars are relative scores, not confidence probabilities. The change budget counts only changed dimensions; it is a maximum, not a requirement. OpenDyslexic uses its actual font. Text reflows when settings change, with reduced-motion fallbacks. Simulated-reader limits remain visible throughout.
+
 ## What it found
 
 One context-free UCB1 policy trained across four simulated reader personas

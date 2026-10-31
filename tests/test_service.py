@@ -68,3 +68,23 @@ def test_validation_and_unknown_session() -> None:
     invalid = client.post("/v1/sessions", json={"constraints": {"min_font_size": 17}})
     assert invalid.status_code == 422
     assert client.post("/v1/sessions/missing/step", json=TELEMETRY).status_code == 404
+
+
+def test_preset_evidence_matches_the_decision_mask_and_selected_estimate() -> None:
+    store = SessionStore(LinUCB())
+    constraints = UserConstraints(min_font_size=22, tts_allowed=False)
+    session = store.create(constraints)
+    from adaptread.domain.actions import PRESETS
+
+    observed = PRESETS[session.pending_action]
+    result = store.step(session.id, TELEMETRY)
+    expected_mask = constraints.action_mask(observed)
+    scores = result["preset_scores"]
+    assert len(scores) == len(PRESETS)
+    for index, score in enumerate(scores):
+        assert score["allowed"] == bool(expected_mask[index])
+        assert np.isfinite(score["estimate"])
+        assert score["exploration_bonus"] >= 0
+    selected = scores[result["action_index"]]
+    assert selected["allowed"]
+    assert selected["estimate"] == pytest.approx(result["estimated_value"])

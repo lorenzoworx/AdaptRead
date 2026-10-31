@@ -119,9 +119,34 @@ class SessionStore:
                 "action": PRESETS[next_action].to_dict(),
                 "reward": reward.total,
                 "estimated_value": value,
+                "preset_scores": self._scores(session.agent, next_context, mask),
                 "exploring": exploring,
                 "explanation": self._explanation(PRESETS[next_action], exploring),
             }
+
+    @staticmethod
+    def _scores(agent: Bandit, context: np.ndarray, mask: np.ndarray) -> list[dict[str, Any]]:
+        """Expose the values used by this decision, not a confidence probability."""
+        if isinstance(agent, LinUCB):
+            means = agent.predictions(context, explore=False)
+            scores = means if agent.evaluation else agent.predictions(context, explore=True)
+        else:
+            means = agent.values
+            scores = means if agent.evaluation else agent.scores()
+        return [
+            {
+                "action_index": index,
+                "estimate": float(means[index]),
+                # An untried UCB1 action has an infinite bonus; JSON uses null.
+                "exploration_bonus": (
+                    max(0.0, float(scores[index] - means[index]))
+                    if np.isfinite(scores[index])
+                    else None
+                ),
+                "allowed": bool(mask[index]),
+            }
+            for index in range(len(PRESETS))
+        ]
 
     @staticmethod
     def _value(agent: Bandit, context: np.ndarray, action: int) -> float:
